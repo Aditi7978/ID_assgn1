@@ -1,0 +1,76 @@
+//q1a
+desc instructor;
+desc course;
+desc prereq;
+desc department;
+desc teaches;
+
+//q1b
+select * from instructor;
+select * from course;
+select * from prereq;
+select * from department;
+select * from teaches;
+
+//q1c
+select name,dept_name
+from instructor;
+
+//q1d
+select name,salary
+from instructor
+where dept_name='comp.sci.';
+
+//q1e
+select id,name,dept_name,salary
+from instructor
+where dept_name='physics' and salary<90000;
+
+//q1f
+select name
+from instructor
+where dept_name!='comp.sci.';
+
+//q1g
+select distinct dept_name
+from instructor;
+
+//q1h
+select course_id
+from teaches
+where semester='spring' and year=2009;
+
+//q1i
+select title
+from course
+where dept_name='comp.sci.' and credits!=3;
+
+//q1j
+select * from course order by dept_name desc;
+
+//q1k
+alter table instructor add date_of_join date;
+
+//q1l
+update instructor
+set date_of_join='10/05/2003'
+where id=12121;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
