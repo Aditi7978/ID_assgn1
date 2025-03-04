@@ -56,6 +56,32 @@ update instructor
 set date_of_join='10/05/2003'
 where id=12121;
 
+//m
+ alter table instructor rename column dept_name to department;
+ alter table course rename column dept_name to department;
+ alter table department rename column dept_name to department;
+
+//n
+alter table prereq rename to prerequired;
+
+//o
+alter table course rename column course_id to sub_code;
+
+//p
+alter table instructor modify name varchar(50);
+
+//q
+alter table  instructor rename to faculty_info;
+
+//r
+alter table course modify sub_code varchar2(8);
+
+//s
+drop table prerequired;
+
+//t
+alter table department rename column building to builder;
+
 
 
 
