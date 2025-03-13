@@ -1,0 +1,91 @@
+//q1a
+select sub_code,title,credits 
+from course
+where department in ('physics','music','finance','biology');
+
+//q1b
+select *
+from faculty_info
+where name like 'k%' and salary > 65000;
+
+//q1c
+select name,
+department,
+salary*1.05 as da,
+salary*0.2 as hra,
+salary*0.3 as it,
+salary + (salary*1.05) + (salary*0.2) as gs,
+salary + (salary*1.05) + (salary*0.2) - (salary*0.3) as ns
+from instructor;
+
+//q1d
+select * 
+from instructor
+where salary between 60000 and 80000;
+
+//q1e
+select* 
+from instructor
+where name like '_r%';
+
+//q1f
+select name
+from instructor
+where department='comp.sci.'
+order by salary desc;
+
+//q1g
+update instructor
+set salary=salary*1.15;
+
+//q1h
+update instructor
+set salary=salary*1.03
+where department='comp.sci.' and salary<70000;
+
+//q1i
+select salary from instructor;
+
+//q1j
+update course
+set title='game theory'
+where title='game design';
+
+//q1k
+delete 
+from instructor
+where department='history';
+
+//q1l
+delete 
+from course
+where course_id like 'bio%';
+
+//2a
+select avg(salary)
+from instructor
+where department='physics';
+
+//2b
+select dept_name,avg(salary)
+from instructor
+group by dept_name;
+
+//2c
+select id,name,dept_name
+from instructor
+where salary=(select max(salary) from instructor);
+
+//2d
+select count(*)
+from instructor 
+where dept_name='comp.sci.';
+
+//2e
+select sum(credits)
+from course
+where dept_name='comp.sci.';
+
+//2f
+
+
