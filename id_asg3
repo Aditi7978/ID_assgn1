@@ -87,5 +87,62 @@ from course
 where dept_name='comp.sci.';
 
 //2f
+select count(*),sum(salary)
+from instructor
+where dept_name='physics' or dept_name='comp.sci.';
+
+//2g
+select sum(credits)
+from course
+where dept_name='comp.sci.' or dept_name='biology';
+
+//2h
+select sum(budget),building
+from department
+group by building;
+
+//2i
+select count(*),dept_name
+from instructor
+group by dept_name;
+
+//2j
+select count(*) as c,dept_name
+from instructor
+group by dept_name
+order by c desc;
+
+
+//2k
+select count(*),semester
+from teaches
+group by semester;
+
+//2l
+select dept_name
+from instructor 
+group by dept_name
+having count(*)<2;
+
+//2m
+select count(*) as c,dept_name
+from (select dept_name from instructor where dept_name!='finance')
+group by dept_name having c>=2;
+
+//2n
+select dept_name,sum(salary) as sum
+from instructor
+group by dept_name
+having sum>50000;
+
+//2o
+select sum(budget)
+from department
+where building='watson';
+
+//2p
+select max(salary)
+from instructor
+where dept_name='comp.sci.';
 
 
