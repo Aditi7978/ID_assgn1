@@ -1,0 +1,75 @@
+--q1a
+create table customer(
+cust_no varchar(5) primary key check(cust_no like 'C____'),
+name varchar2(10) not null,
+phone_no number(10),
+city varchar2(10) not null
+);
+
+--q1b
+create table account(
+account_no varchar2(5) primary key check(account_no like 'A____'),
+type varchar(2) check(type in('SB','FD','CA')),
+balance number(10) check(balance < 10000000),
+branch_code varchar(5) ,
+foreign key(branch_code) references branch(branch_code)
+);
+
+--q1c
+create table depositor(
+cust_no varchar(5),
+account_no varchar2(5),
+primary key(cust_no,account_no),
+foreign key(cust_no) references customer(cust_no),
+foreign key(account_no) references account(account_no)
+);
+
+--q1d
+create table loan(
+loan_no varchar(5) primary key check(loan_no like 'A____'),
+cust_no varchar(5),
+amount number(10) check(amount > 1000),
+branch_code varchar(5),
+foreign key(cust_no) references customer(cust_no),
+foreign key(branch_code) references bramch(branch_code)
+);
+
+--q1e
+create table branch(
+branch_code varchar(5) primary key,
+branch_name varchar2(20) not null,
+branch_city varchar2(10) check(branch_city in('DELHI','MUMBAI','KOLKATA','CHENNAI'))
+);
+
+--q1f
+create table insallment(
+inst_no number(2) check(inst_no <= 10),
+loan_no varchar(5),
+inst_amount number(10) not null,
+primary key(inst_no,loan_no),
+foreign key(loan_no) references loan(loan_no)
+);
+
+--Q2A
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0001','RAJ ANAND SINGH',9861258466,'DELHI');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0002','ANKITA SINGH',9879958651,'BANGALORE');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0003','SOUMYA JHA',9885623344,'MUMBAI');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0004','ABHIJIT MISHRA',9455845425,'MUMBAI');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0005','YASH SARAF',9665854585,'KOLKATA');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0006','SWAROOP RAY',9437855466,'CHENNAI');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0007','SURYA NARAYAN',9937955212,'GURGAON');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0008','PRANAV PRAVEEN',9336652441,'PUNE');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0009','STUTI MISRA',7870266534,'DELHI');
+INSERT INTO CUSTOMER(CUST_NO,NAME,PHONE_NO,CITY) VALUES('C0010','ASLESHA TIWARI',NULL,'MUMBAI');
+
+--Q2F
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(1,'L0005',500000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(1,'L0002',10000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(1,'L0003',50000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(1,'L0004',20000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(2,'L0005',500000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(1,'L0006',3000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(2,'L0002',10000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(3,'L0002',10000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(2,'L0003',50000);
+INSERT INTO INSTALLMENT(INST_NO,LOAN_NO,INST_AMOUNT) VALUES(2,'L0004',20000);
